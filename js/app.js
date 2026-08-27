@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Load Data from data.js
+    const savedData = localStorage.getItem('siteData');
+    if (savedData) {
+        try {
+            window.siteData = JSON.parse(savedData);
+        } catch (e) {
+            console.error('Failed to parse saved siteData', e);
+        }
+    }
     loadSiteData();
     
     // 2. Initialize UI Interactions
@@ -34,6 +42,11 @@ function loadSiteData() {
         li.appendChild(a);
         navLinksContainer.appendChild(li);
     });
+    
+    // Add Admin Icon
+    const adminLi = document.createElement('li');
+    adminLi.innerHTML = `<a href="#" onclick="openAdmin(event)" title="관리자 모드">⚙️</a>`;
+    navLinksContainer.appendChild(adminLi);
 
     // Hero
     document.getElementById('hero-title').innerHTML = siteData.hero.title.replace(/\n/g, '<br>');

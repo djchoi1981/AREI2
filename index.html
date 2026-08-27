@@ -143,5 +143,16 @@
     <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
+    <script>
+        function openAdmin(e) {
+            e.preventDefault();
+            const pwd = prompt("관리자 비밀번호를 입력하세요:");
+            if (pwd === siteData.admin.password) {
+                window.location.href = 'admin.html';
+            } else if (pwd !== null) {
+                alert("비밀번호가 틀렸습니다.");
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알파생태연구원 - 관리자 모드</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { background: var(--color-bg); }
+        .admin-header {
+            background: var(--color-primary);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .admin-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .admin-section {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 30px;
+        }
+        .admin-section h2 {
+            margin-bottom: 20px;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-bg);
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            align-items: center;
+            background: var(--color-bg);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .form-row input { flex: 1; }
+        .btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn:hover { background: var(--color-primary-light); }
+        .btn-danger { background: #e74c3c; }
+        .btn-danger:hover { background: #c0392b; }
+        .btn-add { background: var(--color-secondary); color: var(--color-text); margin-top: 10px; }
+        
+        .floating-save {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .btn-download { background: var(--color-accent); color: white; }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <h1>⚙️ 웹사이트 관리자 모드</h1>
+        <p>내용을 수정한 뒤 우측 하단의 '적용(저장)' 버튼을 누르세요.</p>
+    </div>
+
+    <div class="admin-container">
+        
+        <!-- 오시는 길 -->
+        <div class="admin-section">
+            <h2>📍 오시는 길 (Contact)</h2>
+            <div class="form-group">
+                <label>회사명</label>
+                <input type="text" id="contact-company">
+            </div>
+            <div class="form-group">
+                <label>주소</label>
+                <input type="text" id="contact-address">
+            </div>
+            <div class="form-group">
+                <label>전화번호</label>
+                <input type="text" id="contact-phone">
+            </div>
+            <div class="form-group">
+                <label>이메일</label>
+                <input type="text" id="contact-email">
+            </div>
+        </div>
+
+        <!-- 자료실 -->
+        <div class="admin-section">
+            <h2>📚 자료실 (Resources)</h2>
+            <div id="resources-list"></div>
+            <button class="btn btn-add" onclick="addListItem('resources-list', 'resource')">+ 자료 추가</button>
+        </div>
+
+        <!-- 서브페이지: 연구 프로젝트 -->
+        <div class="admin-section">
+            <h2>🔬 서브페이지: 연구 프로젝트</h2>
+            <div id="projects-list"></div>
+            <button class="btn btn-add" onclick="addListItem('projects-list', 'subpage')">+ 프로젝트 추가</button>
+        </div>
+
+        <!-- 서브페이지: 발표 논문 -->
+        <div class="admin-section">
+            <h2>📄 서브페이지: 발표 논문</h2>
+            <div id="papers-list"></div>
+            <button class="btn btn-add" onclick="addListItem('papers-list', 'subpage')">+ 논문 추가</button>
+        </div>
+
+        <!-- 서브페이지: 특허 기술 -->
+        <div class="admin-section">
+            <h2>💡 서브페이지: 특허 기술</h2>
+            <div id="patents-list"></div>
+            <button class="btn btn-add" onclick="addListItem('patents-list', 'subpage')">+ 특허 추가</button>
+        </div>
+        
+        <!-- 비밀번호 변경 -->
+        <div class="admin-section">
+            <h2>🔒 관리자 설정</h2>
+            <div class="form-group">
+                <label>새 비밀번호</label>
+                <input type="text" id="admin-password">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="floating-save">
+        <a href="index.html" class="btn btn-large" style="background: white; color: var(--color-primary);">홈으로 이동</a>
+        <button class="btn btn-large" onclick="saveToLocalStorage()">1. 브라우저에 임시 적용</button>
+        <button class="btn btn-large btn-download" onclick="downloadDataJs()">2. data.js 파일 다운로드</button>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

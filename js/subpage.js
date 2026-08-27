@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // LocalStorage 데이터 덮어쓰기 로직
+    const savedData = localStorage.getItem('siteData');
+    if (savedData) {
+        try {
+            window.siteData = JSON.parse(savedData);
+        } catch (e) {
+            console.error('Failed to parse saved siteData', e);
+        }
+    }
+
     initSubpageNavbar();
     loadSubpageData();
 });

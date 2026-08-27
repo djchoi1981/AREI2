@@ -1,6 +1,11 @@
 // 웹사이트 데이터 파일 (이 파일만 수정하면 홈페이지 내용이 변경됩니다)
 
-const siteData = {
+let siteData = {
+    // 관리자 모드 설정
+    admin: {
+        password: "1234"
+    },
+    // 헤더 및 메인 배너
     header: {
         logoText: "알파생태연구원",
         logoImage: "assets/logo.png", // 로고 이미지 경로 (사용하지 않을 경우 "" 로 비워두세요)
