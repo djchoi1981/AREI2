@@ -23,7 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     renderList('papers-list', siteData.subpages.papers.list, 'subpage');
     renderList('patents-list', siteData.subpages.patents.list, 'subpage');
 
-    // 4. 비밀번호 로드
+    // 4. 하단 푸터 로드
+    document.getElementById('footer-copyright').value = siteData.footer.copyright;
+
+    // 5. 비밀번호 로드
     document.getElementById('admin-password').value = siteData.admin.password;
 });
 
@@ -105,6 +108,7 @@ function saveToLocalStorage() {
     siteData.subpages.papers.list = gatherListData('papers-list', 'subpage');
     siteData.subpages.patents.list = gatherListData('patents-list', 'subpage');
     
+    siteData.footer.copyright = document.getElementById('footer-copyright').value;
     siteData.admin.password = document.getElementById('admin-password').value;
 
     // Save to LocalStorage

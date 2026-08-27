@@ -27,11 +27,17 @@ function loadSiteData() {
         logoImg.src = siteData.header.logoImage;
         logoImg.style.display = 'block';
         document.getElementById('logo-text').style.display = 'none';
+
+        const footerLogoImg = document.getElementById('footer-logo-img');
+        if(footerLogoImg) {
+            footerLogoImg.src = siteData.header.logoImage;
+            footerLogoImg.style.display = 'block';
+            document.getElementById('footer-logo-text').style.display = 'none';
+        }
     } else {
         document.getElementById('logo-text').textContent = siteData.header.logoText;
+        document.getElementById('footer-logo-text').textContent = siteData.header.logoText;
     }
-    
-    document.querySelector('.footer-logo').textContent = siteData.header.logoText;
     
     const navLinksContainer = document.getElementById('nav-links');
     siteData.header.menu.forEach(item => {
