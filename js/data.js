@@ -80,8 +80,8 @@ let siteData = {
         title: "Contact Us",
         companyName: "주식회사 알파생태연구원",
         address: "전북특별자치도 군산시 옥산면 대려2길 18-1",
-        phone: "063-000-0000",
-        email: "info@alphaecology.re.kr",
+        phone: "070-4099-1400",
+        email: "manager@alpha-eco.com",
         mapQuery: "전북 군산시 옥산면 대려2길 18-1"
     },
     footer: {

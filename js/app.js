@@ -65,7 +65,7 @@ function loadSiteData() {
     
     // Add Webmail Link
     const webmailLi = document.createElement('li');
-    webmailLi.innerHTML = `<a href="http://webmail.alphaeco.cafe24.com/intro.php" target="_blank" title="사내 웹메일 로그인"><i class="fas fa-envelope"></i> 웹메일</a>`;
+    webmailLi.innerHTML = `<a href="http://webmail.alphaeco.cafe24.com/intro.php" target="_blank" title="사내 웹메일 로그인" style="font-size: 1.2rem;">👤</a>`;
     navLinksContainer.appendChild(webmailLi);
     
     // Add Admin Icon
