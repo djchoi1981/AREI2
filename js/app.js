@@ -57,6 +57,10 @@ function loadSiteData() {
     siteData.about.stats.forEach(stat => {
         const div = document.createElement('div');
         div.className = 'stat-card';
+        if (stat.id) {
+            div.style.cursor = 'pointer';
+            div.onclick = () => window.location.href = `subpage.html?page=${stat.id}`;
+        }
         div.innerHTML = `
             <span class="stat-num">${stat.number}</span>
             <span class="stat-label">${stat.label}</span>
@@ -99,7 +103,16 @@ function loadSiteData() {
 
     // Contact
     document.getElementById('contact-title').textContent = siteData.contact.title;
-    document.getElementById('contact-company').textContent = siteData.contact.companyName;
+    
+    if (siteData.header.logoImage && siteData.header.logoImage !== "") {
+        const contactLogo = document.getElementById('contact-logo');
+        contactLogo.src = siteData.header.logoImage;
+        contactLogo.style.display = 'block';
+        document.getElementById('contact-company').style.display = 'none';
+    } else {
+        document.getElementById('contact-company').textContent = siteData.contact.companyName;
+    }
+    
     document.getElementById('contact-address').textContent = siteData.contact.address;
     document.getElementById('contact-phone').textContent = siteData.contact.phone;
     document.getElementById('contact-email').textContent = siteData.contact.email;

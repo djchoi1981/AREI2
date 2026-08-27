@@ -26,9 +26,9 @@ const siteData = {
             "글로벌 연구기관들과의 협력을 통해 선진화된 수산 과학기술을 개발합니다."
         ],
         stats: [
-            { number: "20+", label: "연구 프로젝트" },
-            { number: "50+", label: "발표 논문" },
-            { number: "10+", label: "특허 기술" }
+            { id: "projects", number: "20+", label: "연구 프로젝트" },
+            { id: "papers", number: "50+", label: "발표 논문" },
+            { id: "patents", number: "10+", label: "특허 기술" }
         ]
     },
     research: {
@@ -75,5 +75,38 @@ const siteData = {
     },
     footer: {
         copyright: "© 2026 Alpha Ecology Research Institute. All rights reserved."
+    },
+    
+    // 서브페이지 데이터 (추후 추가/수정 가능)
+    subpages: {
+        projects: {
+            title: "연구 프로젝트",
+            description: "알파생태연구원이 수행 중이거나 완료한 주요 연구 과제 목록입니다.",
+            list: [
+                { title: "기후변화 대응 금강 유역 고유종 서식지 복원 연구", detail: "발주처: 환경부 | 기간: 2025.01 - 2027.12" },
+                { title: "스마트 양식(RAS)을 활용한 뱀장어 친환경 종묘 생산", detail: "발주처: 해양수산부 | 기간: 2024.03 - 2026.02" },
+                { title: "토종 붕어 유전적 다양성 확보 및 유전자원 은행 구축", detail: "자체 연구 | 기간: 2025.06 - 진행중" },
+                { title: "미세플라스틱이 담수어류 생태에 미치는 영향 분석", detail: "발주처: 한국연구재단 | 기간: 2023.05 - 2025.04" }
+            ]
+        },
+        papers: {
+            title: "발표 논문",
+            description: "연구원 소속 연구진이 국내외 주요 학술지에 게재한 연구 논문입니다.",
+            list: [
+                { title: "Genetic diversity of endemic Cyprinidae in South Korea", detail: "Journal of Freshwater Ecology | 2026.05 | 제1저자: 김철수" },
+                { title: "수생태계 복원 모델링을 통한 서식지 적합도 평가", detail: "한국생태학회지 | 2025.11 | 교신저자: 이영희" },
+                { title: "Impact of temperature rise on the breeding cycle of native loaches", detail: "Aquatic Sciences | 2025.08 | 제1저자: 박지민" },
+                { title: "순환여과식 양식(RAS) 시스템 내 미생물 군집 분석", detail: "한국수산과학회지 | 2024.12 | 공저자: 최민준" }
+            ]
+        },
+        patents: {
+            title: "특허 기술",
+            description: "연구원이 개발하여 등록을 완료한 수산 및 생태 관련 특허 기술입니다.",
+            list: [
+                { title: "하천 생태계 교란 어종 자동 판별 및 포획 장치", detail: "등록번호: 10-2026-0012345 | 등록일: 2026.04.10" },
+                { title: "질병 저항성 강화를 위한 친환경 담수어류 사료 조성물", detail: "등록번호: 10-2025-0098765 | 등록일: 2025.10.22" },
+                { title: "휴대용 수질 모니터링 및 실시간 서식지 적합성 평가 시스템", detail: "등록번호: 10-2024-0054321 | 등록일: 2024.07.15" }
+            ]
+        }
     }
 };
