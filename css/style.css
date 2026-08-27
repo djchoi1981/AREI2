@@ -19,9 +19,12 @@
     
     /* Spacing & Layout */
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --color-border: #e0e6ed;
+    
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
     --border-radius: 16px;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.3);
     --shadow-soft: 0 10px 30px rgba(10, 77, 104, 0.08);
 }
 
@@ -33,7 +36,7 @@
         --color-surface: #0a2b3d;
         --color-text-main: #f1f5f9;
         --color-text-muted: #94a3b8;
-        --glass-bg: rgba(10, 43, 61, 0.7);
+        --glass-bg: rgba(10, 43, 61, 0.95);
         --glass-border: rgba(255, 255, 255, 0.1);
         --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
@@ -157,18 +160,17 @@ h2 {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 0;
-    transition: var(--transition);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-}
-
-.navbar.scrolled {
     padding: 12px 0;
+    transition: var(--transition);
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.navbar.scrolled {
+    padding: 12px 0;
 }
 
 .nav-container {
@@ -193,10 +195,10 @@ h2 {
 
 .navbar.scrolled .logo,
 .navbar:not(.scrolled) .logo {
-    color: var(--color-white); /* Assuming dark hero */
+    color: var(--color-primary); 
 }
 @media (prefers-color-scheme: dark) {
-    .navbar.scrolled .logo { color: var(--color-white); }
+    .navbar.scrolled .logo, .navbar:not(.scrolled) .logo { color: var(--color-white); }
 }
 
 .nav-links {
@@ -205,7 +207,7 @@ h2 {
 }
 
 .nav-links li a {
-    color: var(--color-white);
+    color: var(--color-primary);
     font-weight: 500;
     font-size: 1.05rem;
     position: relative;
@@ -517,13 +519,13 @@ h2 {
 
 /* Footer */
 .footer {
-    background: var(--color-primary);
-    color: rgba(255, 255, 255, 0.7);
+    background: #f8f9fa;
+    color: var(--color-text-main);
     padding: 40px 0;
 }
 
 .footer-logo {
-    color: var(--color-white);
+    color: var(--color-primary);
     margin-bottom: 16px;
 }
 
