@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    if (window.siteData && window.siteData.styles) {
+        if (window.siteData.styles.navbarBg) {
+            document.documentElement.style.setProperty('--glass-bg', window.siteData.styles.navbarBg);
+        }
+        if (window.siteData.styles.footerBg) {
+            const footer = document.querySelector('.footer');
+            if (footer) footer.style.background = window.siteData.styles.footerBg;
+        }
+    }
+
     initSubpageNavbar();
     loadSubpageData();
 });

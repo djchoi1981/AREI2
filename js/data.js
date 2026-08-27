@@ -5,6 +5,12 @@ let siteData = {
     admin: {
         password: "1234"
     },
+    // 사이트 디자인 설정
+    styles: {
+        navbarBg: "", // 예: rgba(255, 255, 255, 0.9)
+        footerBg: "", // 예: #0a4d68
+        heroImage: "assets/hero_bg.jpg" // 기본값
+    },
     // 헤더 및 메인 배너
     header: {
         logoText: "알파생태연구원",

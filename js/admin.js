@@ -9,6 +9,12 @@ if (savedData) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. 디자인 설정 로드
+    if (!siteData.styles) siteData.styles = {}; // 하위호환
+    document.getElementById('style-navbar-bg').value = siteData.styles.navbarBg || "";
+    document.getElementById('style-footer-bg').value = siteData.styles.footerBg || "";
+    document.getElementById('style-hero-image').value = siteData.styles.heroImage || "";
+
     // 1. 오시는 길 로드
     document.getElementById('contact-company').value = siteData.contact.companyName;
     document.getElementById('contact-address').value = siteData.contact.address;
@@ -98,6 +104,11 @@ function gatherListData(containerId, type) {
 
 function saveToLocalStorage() {
     // Gather all updated data
+    if (!siteData.styles) siteData.styles = {};
+    siteData.styles.navbarBg = document.getElementById('style-navbar-bg').value;
+    siteData.styles.footerBg = document.getElementById('style-footer-bg').value;
+    siteData.styles.heroImage = document.getElementById('style-hero-image').value;
+
     siteData.contact.companyName = document.getElementById('contact-company').value;
     siteData.contact.address = document.getElementById('contact-address').value;
     siteData.contact.phone = document.getElementById('contact-phone').value;

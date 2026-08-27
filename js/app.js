@@ -8,6 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Failed to parse saved siteData', e);
         }
     }
+    if (window.siteData && window.siteData.styles) {
+        if (window.siteData.styles.navbarBg) {
+            document.documentElement.style.setProperty('--glass-bg', window.siteData.styles.navbarBg);
+        }
+        if (window.siteData.styles.footerBg) {
+            const footer = document.querySelector('.footer');
+            if (footer) footer.style.background = window.siteData.styles.footerBg;
+        }
+        if (window.siteData.styles.heroImage) {
+            const hero = document.querySelector('.hero');
+            if (hero) hero.style.backgroundImage = `url('${window.siteData.styles.heroImage}')`;
+        }
+    }
+    
     loadSiteData();
     
     // 2. Initialize UI Interactions
