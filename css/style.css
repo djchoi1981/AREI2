@@ -538,7 +538,8 @@ h2 {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .hero h1 { font-size: 3rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero-glass-card { padding: 48px; max-width: 90%; }
     .about-content, .contact-wrapper {
         grid-template-columns: 1fr;
     }
@@ -578,5 +579,15 @@ h2 {
     .navbar:not(.scrolled) .logo { color: var(--color-primary); }
     @media (prefers-color-scheme: dark) { .navbar:not(.scrolled) .logo { color: var(--color-white); } }
     
+    .hero-glass-card { padding: 32px 24px; border-radius: 20px; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 1.05rem; margin-bottom: 24px; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .btn { width: 100%; text-align: center; }
+
     .resource-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 1.8rem; }
 }
