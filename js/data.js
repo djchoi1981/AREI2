@@ -78,11 +78,11 @@ let siteData = {
     },
     contact: {
         title: "Contact Us",
-        companyName: "(주)알파생태연구원",
-        address: "전북특별자치도 군산시 미룡동 440번지 109호",
+        companyName: "주식회사 알파생태연구원",
+        address: "전북특별자치도 군산시 옥산면 대려2길 18-1",
         phone: "063-000-0000",
         email: "info@alphaecology.re.kr",
-        mapQuery: "전북 군산시 미룡동 440"
+        mapQuery: "전북 군산시 옥산면 대려2길 18-1"
     },
     footer: {
         copyright: "© 2026 Alpha Ecology Research Institute. All rights reserved."
