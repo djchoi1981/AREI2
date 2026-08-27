@@ -14,7 +14,15 @@ function loadSiteData() {
     }
 
     // Header / Nav
-    document.getElementById('logo-text').textContent = siteData.header.logoText;
+    if (siteData.header.logoImage && siteData.header.logoImage !== "") {
+        const logoImg = document.getElementById('logo-img');
+        logoImg.src = siteData.header.logoImage;
+        logoImg.style.display = 'block';
+        document.getElementById('logo-text').style.display = 'none';
+    } else {
+        document.getElementById('logo-text').textContent = siteData.header.logoText;
+    }
+    
     document.querySelector('.footer-logo').textContent = siteData.header.logoText;
     
     const navLinksContainer = document.getElementById('nav-links');

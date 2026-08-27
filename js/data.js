@@ -3,6 +3,7 @@
 const siteData = {
     header: {
         logoText: "알파생태연구원",
+        logoImage: "assets/logo.png", // 로고 이미지 경로 (사용하지 않을 경우 "" 로 비워두세요)
         menu: [
             { name: "연구원 소개", link: "#about" },
             { name: "연구 분야", link: "#research" },
