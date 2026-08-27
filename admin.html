@@ -103,16 +103,25 @@
         <div class="admin-section">
             <h2>🎨 사이트 디자인 (Design)</h2>
             <div class="form-group">
-                <label>상단 메뉴(Navbar) 색상 (예: #ffffff, rgba(0,0,0,0.8))</label>
-                <input type="text" id="style-navbar-bg" placeholder="미입력 시 기본 투명 유리 효과">
+                <label>상단 메뉴(Navbar) 색상</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="color" id="style-navbar-bg-color" value="#ffffff">
+                    <input type="text" id="style-navbar-bg" placeholder="예: rgba(255,255,255,0.95)">
+                </div>
+                <small>색상표에서 선택하거나, 투명도가 필요하면 텍스트로 입력하세요.</small>
             </div>
             <div class="form-group">
-                <label>하단 푸터(Footer) 색상 (예: #0a4d68)</label>
-                <input type="text" id="style-footer-bg" placeholder="미입력 시 기본 파란색">
+                <label>하단 푸터(Footer) 색상</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="color" id="style-footer-bg-color" value="#f8f9fa">
+                    <input type="text" id="style-footer-bg" placeholder="예: #f8f9fa">
+                </div>
             </div>
             <div class="form-group">
-                <label>메인 화면 배경 이미지 (예: assets/hero_bg.jpg)</label>
-                <input type="text" id="style-hero-image" placeholder="이미지 경로 입력">
+                <label>메인 화면 배경 이미지</label>
+                <input type="file" id="style-hero-file" accept="image/*">
+                <small>PC에 있는 사진을 선택하면 임시로 적용됩니다. (저장 시 파일 크기가 커질 수 있습니다)</small>
+                <input type="hidden" id="style-hero-image">
             </div>
         </div>
 

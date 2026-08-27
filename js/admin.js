@@ -11,9 +11,36 @@ if (savedData) {
 document.addEventListener('DOMContentLoaded', () => {
     // 0. 디자인 설정 로드
     if (!siteData.styles) siteData.styles = {}; // 하위호환
-    document.getElementById('style-navbar-bg').value = siteData.styles.navbarBg || "";
-    document.getElementById('style-footer-bg').value = siteData.styles.footerBg || "";
+    
+    const navbarBg = siteData.styles.navbarBg || "";
+    document.getElementById('style-navbar-bg').value = navbarBg;
+    if (navbarBg.startsWith('#')) document.getElementById('style-navbar-bg-color').value = navbarBg.substring(0, 7);
+
+    const footerBg = siteData.styles.footerBg || "";
+    document.getElementById('style-footer-bg').value = footerBg;
+    if (footerBg.startsWith('#')) document.getElementById('style-footer-bg-color').value = footerBg.substring(0, 7);
+
     document.getElementById('style-hero-image').value = siteData.styles.heroImage || "";
+
+    // 색상표 선택 시 텍스트 필드 업데이트
+    document.getElementById('style-navbar-bg-color').addEventListener('input', (e) => {
+        document.getElementById('style-navbar-bg').value = e.target.value;
+    });
+    document.getElementById('style-footer-bg-color').addEventListener('input', (e) => {
+        document.getElementById('style-footer-bg').value = e.target.value;
+    });
+
+    // 파일 선택 시 Base64로 변환하여 hidden 필드에 저장
+    document.getElementById('style-hero-file').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById('style-hero-image').value = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
     // 1. 오시는 길 로드
     document.getElementById('contact-company').value = siteData.contact.companyName;
