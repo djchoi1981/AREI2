@@ -16,10 +16,11 @@ let siteData = {
         logoText: "알파생태연구원",
         logoImage: "assets/logo.png", // 로고 이미지 경로 (사용하지 않을 경우 "" 로 비워두세요)
         menu: [
-            { name: "연구원 소개", link: "#about" },
-            { name: "연구 분야", link: "#research" },
-            { name: "자료실", link: "#resources" },
-            { name: "오시는 길", link: "#contact" }
+            { name: "연구원 소개", link: "index.html#about" },
+            { name: "연구 분야", link: "index.html#research" },
+            { name: "자료실", link: "resources.html" },
+            { name: "게시판", link: "board.html" },
+            { name: "오시는 길", link: "index.html#contact" }
         ]
     },
     hero: {
@@ -68,8 +69,9 @@ let siteData = {
         ]
     },
     resources: {
-        title: "Publications & Data",
-        description: "알파생태연구원의 최신 연구 성과와 생태 데이터를 확인하세요.",
+        title: "연구 성과 및 자료",
+        description: "최신 연구 성과와 데이터를 확인하세요.",
+        driveFolderId: "", // 여기에 구글 드라이브 폴더 ID를 입력하세요
         items: [
             { title: "2025년 금강 유역 담수어류 서식 실태 보고서", date: "2026.05.12", type: "Report" },
             { title: "토종 붕어의 유전적 다양성 보존 방안", date: "2026.03.28", type: "Paper" },

@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('contact-phone').value = siteData.contact.phone;
     document.getElementById('contact-email').value = siteData.contact.email;
 
-    // 2. 자료실 로드
+    // 2. 자료실 드라이브 로드
+    document.getElementById('resources-drive-link').value = siteData.resources.driveFolderId || "";
+    // 기존 자료실(정적 항목) 로드
     renderList('resources-list', siteData.resources.items, 'resource');
 
     // 3. 서브페이지 로드
@@ -141,6 +143,16 @@ function saveToLocalStorage() {
     siteData.contact.phone = document.getElementById('contact-phone').value;
     siteData.contact.email = document.getElementById('contact-email').value;
 
+    let driveLink = document.getElementById('resources-drive-link').value.trim();
+    let folderId = driveLink;
+    if (driveLink.includes("folders/")) {
+        const match = driveLink.match(/folders\/([a-zA-Z0-9-_]+)/);
+        if (match && match[1]) folderId = match[1];
+    } else if (driveLink.includes("id=")) {
+        const match = driveLink.match(/id=([a-zA-Z0-9-_]+)/);
+        if (match && match[1]) folderId = match[1];
+    }
+    siteData.resources.driveFolderId = folderId;
     siteData.resources.items = gatherListData('resources-list', 'resource');
     siteData.subpages.projects.list = gatherListData('projects-list', 'subpage');
     siteData.subpages.papers.list = gatherListData('papers-list', 'subpage');

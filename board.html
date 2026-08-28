@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 게시판 - 알파생태연구원</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Firebase SDK (v9 Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+    <style>
+        .board-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .board-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+        }
+
+        .board-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .board-table th, .board-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .board-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--color-text-dark);
+        }
+
+        .board-table tr:hover {
+            background-color: #f1f3f5;
+            cursor: pointer;
+        }
+
+        .board-btn {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Noto Sans KR', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .board-btn:hover {
+            background-color: var(--color-secondary);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.5); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover { color: #000; }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Post View */
+        .post-view {
+            display: none;
+        }
+        
+        .post-title-display {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+        
+        .post-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .post-content-display {
+            line-height: 1.6;
+            margin-bottom: 30px;
+            white-space: pre-wrap;
+        }
+        
+        .post-actions {
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .delete-btn {
+            background-color: #e03131;
+        }
+        .delete-btn:hover {
+            background-color: #c92a2a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (Same as subpage) -->
+    <header class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" id="logo-container">
+                <img id="logo-img" src="" alt="알파생태연구원 로고" style="display: none;">
+                <span id="logo-text">알파생태연구원</span>
+            </a>
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <!-- JS will populate this -->
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="subpage-header">
+        <div class="container fade-up visible">
+            <h1 id="page-title">실시간 게시판</h1>
+            <p id="page-desc">자유롭게 소통하고 질문을 남겨주세요.</p>
+        </div>
+    </section>
+
+    <section class="subpage-content">
+        <div class="container">
+            <div class="board-container fade-up visible">
+                
+                <!-- Board List View -->
+                <div id="board-list-view">
+                    <div class="board-header">
+                        <h3>전체 글</h3>
+                        <button class="board-btn" onclick="openWriteModal()">글쓰기</button>
+                    </div>
+                    <table class="board-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">번호</th>
+                                <th style="width: 50%">제목</th>
+                                <th style="width: 15%">작성자</th>
+                                <th style="width: 25%">작성일</th>
+                            </tr>
+                        </thead>
+                        <tbody id="board-tbody">
+                            <!-- 로딩 중 -->
+                            <tr><td colspan="4" style="text-align:center;">게시글을 불러오는 중이거나 아직 작성된 글이 없습니다.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Post View -->
+                <div id="board-post-view" class="post-view">
+                    <h2 class="post-title-display" id="view-title">제목</h2>
+                    <div class="post-meta">
+                        작성자: <span id="view-author">작성자</span> | 
+                        작성일: <span id="view-date">날짜</span>
+                    </div>
+                    <div class="post-content-display" id="view-content">내용</div>
+                    
+                    <div class="post-actions">
+                        <button class="board-btn" onclick="closePostView()">목록으로</button>
+                        <button class="board-btn delete-btn" onclick="attemptDeletePost()">삭제하기</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <img id="footer-logo-img" src="" alt="알파생태연구원 로고" style="display: none; max-width: 200px; margin: 0 auto 15px auto;">
+            <h3 id="footer-logo-text" style="margin-bottom: 15px;">알파생태연구원</h3>
+            <p id="footer-copyright">© 2026 Alpha Ecology Research Institute.</p>
+        </div>
+    </footer>
+
+    <!-- Write Modal -->
+    <div id="writeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeWriteModal()">&times;</span>
+            <h2 style="margin-bottom: 20px; color: var(--color-primary);">새 글 작성</h2>
+            <form id="writeForm" onsubmit="submitPost(event)">
+                <div class="form-group">
+                    <label>제목</label>
+                    <input type="text" id="postTitle" required placeholder="제목을 입력하세요">
+                </div>
+                <div class="form-group" style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>작성자</label>
+                        <input type="text" id="postAuthor" required placeholder="이름">
+                    </div>
+                    <div style="flex: 1;">
+                        <label>비밀번호</label>
+                        <input type="password" id="postPassword" required placeholder="수정/삭제 시 필요">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>내용</label>
+                    <textarea id="postContent" required placeholder="내용을 입력하세요"></textarea>
+                </div>
+                <div style="text-align: right;">
+                    <button type="submit" class="board-btn">등록하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Data and App JS (for Nav/Footer/Colors) -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Firebase Init & Board Logic -->
+    <script src="js/board.js"></script>
+    
+    <script>
+        // Apply logo/colors on load
+        if (siteData.header.logoImage && siteData.header.logoImage !== "") {
+            const logoImg = document.getElementById('logo-img');
+            logoImg.src = siteData.header.logoImage;
+            logoImg.style.display = 'block';
+            document.getElementById('logo-text').style.display = 'none';
+
+            const footerLogoImg = document.getElementById('footer-logo-img');
+            footerLogoImg.src = siteData.header.logoImage;
+            footerLogoImg.style.display = 'block';
+            document.getElementById('footer-logo-text').style.display = 'none';
+        } else {
+            document.getElementById('logo-text').textContent = siteData.header.logoText;
+            document.getElementById('footer-logo-text').textContent = siteData.header.logoText;
+        }
+        document.getElementById('footer-copyright').textContent = siteData.footer.copyright;
+        
+        // Hamburger
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

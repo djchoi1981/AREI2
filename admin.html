@@ -125,6 +125,16 @@
             </div>
         </div>
 
+        <!-- 자료실 -->
+        <div class="admin-section">
+            <h2>📁 자료실 (Resources)</h2>
+            <div class="form-group">
+                <label>구글 드라이브 공유 폴더 링크</label>
+                <input type="text" id="resources-drive-link" placeholder="예: https://drive.google.com/drive/folders/1a2b3c4d5e...">
+                <small>구글 드라이브 폴더의 공유 권한을 '링크가 있는 모든 사용자'로 설정한 후 링크를 붙여넣으세요.</small>
+            </div>
+        </div>
+
         <!-- 오시는 길 -->
         <div class="admin-section">
             <h2>📍 오시는 길 (Contact)</h2>
@@ -146,11 +156,13 @@
             </div>
         </div>
 
-        <!-- 자료실 -->
+
+
+        <!-- 자료실(연구 성과) 항목 편집 -->
         <div class="admin-section">
-            <h2>📚 자료실 (Resources)</h2>
+            <h2>📚 자료실 - 연구 성과 목록</h2>
             <div id="resources-list"></div>
-            <button class="btn btn-add" onclick="addListItem('resources-list', 'resource')">+ 자료 추가</button>
+            <button class="btn btn-add" onclick="addListItem('resources-list', 'resource')">+ 성과 추가</button>
         </div>
 
         <!-- 서브페이지: 연구 프로젝트 -->

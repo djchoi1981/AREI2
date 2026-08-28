@@ -126,18 +126,21 @@ function loadSiteData() {
     document.getElementById('resources-desc').textContent = siteData.resources.description;
     
     const resourceList = document.getElementById('resource-list');
-    siteData.resources.items.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'resource-item';
-        div.innerHTML = `
-            <div class="resource-title">${item.title}</div>
-            <div class="resource-meta">
-                <span class="resource-type">${item.type}</span>
-                <span class="resource-date">${item.date}</span>
-            </div>
-        `;
-        resourceList.appendChild(div);
-    });
+    if (resourceList && siteData.resources.items) {
+        resourceList.innerHTML = '';
+        siteData.resources.items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'resource-card fade-up visible';
+            card.innerHTML = `
+                <div class="resource-type">${item.type}</div>
+                <h3>${item.title}</h3>
+                <div class="resource-meta">
+                    <span>📅 ${item.date}</span>
+                </div>
+            `;
+            resourceList.appendChild(card);
+        });
+    }
 
     // Contact
     document.getElementById('contact-title').textContent = siteData.contact.title;
