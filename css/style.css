@@ -160,17 +160,19 @@ h2 {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 12px 0;
+    padding: 20px 0; /* 조금 넉넉하게 탑에서 시작 */
     transition: var(--transition);
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled {
+    padding: 12px 0;
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
-
-.navbar.scrolled {
-    padding: 12px 0;
 }
 
 .nav-container {
@@ -182,23 +184,25 @@ h2 {
 .logo {
     font-size: 1.5rem;
     font-weight: 900;
-    color: var(--color-primary);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--color-white); /* 기본 탑에서는 흰색 */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
+}
+
+.navbar.scrolled .logo {
+    color: var(--color-primary); /* 스크롤 시 짙은 파란색 */
+    text-shadow: none;
 }
 
 #logo-img {
     max-height: 45px;
     width: auto;
+    /* 만약 이미지 로고가 어두운 색이면, 상단에서 흰색으로 반전시키는 필터 사용 가능 */
 }
 
-.navbar.scrolled .logo,
-.navbar:not(.scrolled) .logo {
-    color: var(--color-primary); 
-}
 @media (prefers-color-scheme: dark) {
-    .navbar.scrolled .logo, .navbar:not(.scrolled) .logo { color: var(--color-white); }
+    .navbar.scrolled .logo, .navbar:not(.scrolled) .logo { color: var(--color-white); text-shadow: none; }
 }
 
 .nav-links {
@@ -207,10 +211,20 @@ h2 {
 }
 
 .nav-links li a {
-    color: var(--color-primary);
+    color: var(--color-white); /* 기본 탑에서는 흰색 */
     font-weight: 500;
     font-size: 1.05rem;
     position: relative;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* 가독성 향상 */
+}
+
+.navbar.scrolled .nav-links li a {
+    color: var(--color-primary); /* 스크롤 시 짙은 파란색 */
+    text-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .navbar.scrolled .nav-links li a, .navbar:not(.scrolled) .nav-links li a { color: var(--color-white); text-shadow: none; }
 }
 
 .nav-links li a::after {
@@ -240,6 +254,14 @@ h2 {
     height: 3px;
     background: var(--color-white);
     transition: var(--transition);
+}
+
+.navbar.scrolled .hamburger span {
+    background: var(--color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    .navbar.scrolled .hamburger span, .navbar:not(.scrolled) .hamburger span { background: var(--color-white); }
 }
 
 /* Hero Section */
