@@ -36,113 +36,155 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
-        <div class="container">
+        <div class="container hero-layout">
             <div class="hero-content">
-                <div class="hero-glass-card fade-up">
-                    <span class="hero-badge">지속가능한 수생태계 연구의 중심</span>
-                    <h1 id="hero-title">생명과 환경의 조화<br>알파생태연구원</h1>
-                    <p class="delay-1" id="hero-subtitle">내수면 생태계 복원과 지속가능한 어류 자원 연구를 선도합니다.</p>
-                    <div class="hero-actions delay-2">
-                        <a href="#research" class="btn primary-btn" id="hero-btn">연구분야 알아보기</a>
-                        <a href="#about" class="btn outline-btn">기관 소개</a>
-                    </div>
-                </div>
+                <h1 id="hero-title" class="fade-up">생명과 환경의 조화<br>알파생태연구원</h1>
+                <p id="hero-subtitle" class="fade-up delay-1">내수면 생태계 복원과 지속가능한 어류 자원 연구를 선도합니다.</p>
+                <a href="#research" class="btn primary-btn fade-up delay-2" id="hero-btn">연구분야 보기</a>
             </div>
+        </div>
+        <div class="scroll-indicator fade-up delay-2">
+            <a href="#about"><i class="icon-down-arrow"></i></a>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about section-padding" id="about">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="sub-heading" id="about-title">About Us</span>
-                <h2 id="about-heading">미래 세대를 위한 맑은 물과 건강한 생태계</h2>
+        <div class="container about-layout">
+            <div class="about-text fade-up">
+                <span class="sub-heading-line" id="about-title">소개</span>
+                <p id="about-desc">
+                    <!-- JS will populate -->
+                </p>
             </div>
-            <div class="about-content">
-                <div class="about-text fade-up delay-1" id="about-desc">
-                    <!-- JS will populate -->
-                </div>
-                <div class="about-stats fade-up delay-2" id="about-stats">
-                    <!-- JS will populate -->
-                </div>
+            <div class="about-stats fade-up delay-1" id="about-stats">
+                <!-- JS will populate -->
             </div>
         </div>
     </section>
 
     <!-- Research Section -->
     <section class="research section-padding bg-alt" id="research">
-        <div class="container">
-            <div class="section-header fade-up text-center">
-                <span class="sub-heading" id="research-title">Research & Development</span>
-                <h2>핵심 연구 분야</h2>
-            </div>
-            <div class="research-grid" id="research-grid">
+        <div class="container text-center">
+            <span class="sub-heading-line mx-auto" id="research-title">연구분야</span>
+            <div class="research-grid mt-4" id="research-grid">
                 <!-- JS will populate -->
             </div>
         </div>
     </section>
 
-    <!-- Resources Preview Section -->
-    <section class="resources section-padding" id="resources">
-        <div class="container">
-            <div class="section-header fade-up text-center">
-                <span class="sub-heading">Publications & Data</span>
-                <h2 id="resources-title">연구 성과 및 자료</h2>
-                <p id="resources-desc" class="mt-2 text-muted">최신 연구 성과와 데이터를 확인하세요.</p>
-            </div>
-            <div class="resource-grid" id="resource-list" style="margin-top: 40px;">
+    <!-- National Projects Section [NEW] -->
+    <section class="national-projects section-padding" id="projects">
+        <div class="container text-center">
+            <span class="sub-heading-line mx-auto" id="projects-title">국가과제</span>
+            <div class="projects-layout mt-4" id="projects-container">
                 <!-- JS will populate -->
-            </div>
-            <div class="fade-up delay-1 text-center" style="margin-top: 40px;">
-                <a href="resources.html" class="btn btn-primary" style="padding: 15px 30px; font-size: 1.1rem; border-radius: 30px; display: inline-block; background-color: var(--color-primary); color: white; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-                    자료실 (Google Drive) 바로가기
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact section-padding bg-alt" id="contact">
-        <div class="container">
-            <div class="section-header fade-up text-center">
-                <span class="sub-heading" id="contact-title">Contact Us</span>
-                <h2>오시는 길</h2>
+    <!-- Research Process Section [NEW] -->
+    <section class="research-process section-padding bg-alt" id="process">
+        <div class="container text-center">
+            <span class="sub-heading-line mx-auto" id="process-title">연구 프로세스</span>
+            <div class="process-layout mt-4" id="process-container">
+                <!-- JS will populate -->
             </div>
-            <div class="contact-wrapper fade-up delay-1">
-                <div class="contact-info">
-                    <img id="contact-logo" src="" alt="알파생태연구원 로고" style="display: none; max-width: 250px; margin-bottom: 24px;">
-                    <h3 id="contact-company">(주)알파생태연구원</h3>
-                    <ul class="contact-details">
-                        <li>
-                            <i class="icon-location">📍</i>
-                            <span id="contact-address">전북 군산시</span>
-                        </li>
-                        <li>
-                            <i class="icon-phone">📞</i>
-                            <span id="contact-phone">070-4099-1400</span>
-                        </li>
-                        <li>
-                            <i class="icon-email">✉️</i>
-                            <span id="contact-email">manager@alpha-eco.com</span>
-                        </li>
-                    </ul>
+        </div>
+    </section>
+
+    <!-- Research Outcomes Section -->
+    <section class="outcomes section-padding" id="outcomes">
+        <div class="container text-center">
+            <span class="sub-heading-line mx-auto" id="outcomes-title">연구성과</span>
+            
+            <div class="outcomes-filters mt-4" id="outcomes-filters">
+                <!-- Tabs will be populated here -->
+            </div>
+            
+            <div class="outcomes-layout mt-4 text-left">
+                <div class="outcomes-achievements">
+                    <h3>주요 성과</h3>
+                    <div class="achievements-grid" id="achievements-grid">
+                        <!-- JS will populate -->
+                    </div>
                 </div>
-                <div class="contact-map">
-                    <!-- Iframe for Google Maps will be inserted here by JS -->
-                    <div class="map-placeholder" id="map-container">
-                        지도 로딩 중...
+                <div class="outcomes-reports">
+                    <h3>연구보고서 다운로드</h3>
+                    <div class="reports-grid" id="reports-grid">
+                        <!-- JS will populate -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container text-center">
-            <img id="footer-logo-img" src="" alt="알파생태연구원 로고" style="display: none; max-width: 200px; margin: 0 auto 15px auto;">
-            <h2 class="footer-logo" id="footer-logo-text">알파생태연구원</h2>
-            <p id="footer-copyright">© 2026 Alpha Ecology Research Institute.</p>
+    <!-- Gallery & News Section [NEW] -->
+    <section class="gallery-news section-padding bg-alt" id="news">
+        <div class="container gallery-news-layout">
+            <div class="gallery-section fade-up">
+                <h3>현장 갤러리</h3>
+                <div class="gallery-image-wrapper mt-3">
+                    <img id="gallery-image" src="" alt="현장 갤러리 이미지">
+                </div>
+            </div>
+            <div class="news-section fade-up delay-1">
+                <h3>소식</h3>
+                <div class="news-list mt-3" id="news-list">
+                    <!-- JS will populate -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer class="contact-footer" id="contact">
+        <div class="container footer-layout">
+            <div class="footer-info fade-up">
+                <h2 id="contact-title">함께 만드는 건강한 하천,<br>연구협력을 기다립니다</h2>
+                <p id="contact-subtitle" class="mt-2 text-muted">연구·조사·정책 수립 등 다양한 분야에서 협력 파트너십을 환영합니다.</p>
+                <ul class="footer-contact-details mt-4">
+                    <li><span class="icon">✉️</span> <span id="contact-email"></span></li>
+                    <li><span class="icon">📞</span> <span id="contact-phone"></span></li>
+                    <li><span class="icon">📍</span> <span id="contact-address"></span></li>
+                </ul>
+            </div>
+            <div class="footer-form fade-up delay-1">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label>이름</label>
+                        <input type="text" placeholder="이름을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label>소속/기관</label>
+                        <input type="text" placeholder="소속 또는 기관명을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label>이메일</label>
+                        <input type="email" placeholder="이메일을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label>문의내용</label>
+                        <textarea placeholder="문의 내용을 입력하세요" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn mt-3" style="width: 100%; border-radius: 4px;">문의하기</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom container mt-5">
+            <div class="footer-bottom-flex">
+                <div class="footer-brand">
+                    <img id="footer-logo-img" src="" alt="로고" style="display: none;">
+                    <span id="footer-logo-text">알파생태연구원</span>
+                </div>
+                <div class="footer-copyright">
+                    <p id="footer-company-info"></p>
+                    <p id="footer-copyright-text">© 2026 Alpha Ecology Research Institute. All rights reserved.</p>
+                </div>
+                <div class="footer-admin">
+                    <a href="#" onclick="openAdmin(event)">개인정보처리방침</a>
+                </div>
+            </div>
         </div>
     </footer>
 
